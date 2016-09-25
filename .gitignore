@@ -1,4 +1,5 @@
 ﻿/Debug/**
+/Debug/*/**
 /Release/*
 /libdwarf.vs/.vs
-/libdwarf.vs/*.db
+/libdwarf.vs/*.VC.*

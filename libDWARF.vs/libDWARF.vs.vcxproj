@@ -25,6 +25,14 @@
     <None Include="..\docs\Dwarf3.pdf" />
     <None Include="..\docs\Dwarf4.pdf" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\test\dwarfdump.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2FF53790-9636-4598-9F66-4F2B1899A0AD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

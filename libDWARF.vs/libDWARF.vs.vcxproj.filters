@@ -8,6 +8,9 @@
     <Filter Include="docs">
       <UniqueIdentifier>{fd55dec9-6785-4203-8c4e-080fd012736c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{7be7c732-a4b3-484b-a98a-16fad0a07610}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\DWARF.hpp">
@@ -21,5 +24,10 @@
     <None Include="..\docs\Dwarf4.pdf">
       <Filter>docs</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\test\dwarfdump.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
