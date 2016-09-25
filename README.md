@@ -1,2 +1,2 @@
-# libdwarf
+# libDWARF
 A rudimentary DWARF parser
