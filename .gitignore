@@ -1,5 +1,4 @@
-﻿################################################################################
-# Diese .gitignore-Datei wurde von Microsoft(R) Visual Studio automatisch erstellt.
-################################################################################
-
-/Debug/Win32
+﻿/Debug/**
+/Release/*
+/libdwarf.vs/.vs
+/libdwarf.vs/*.db
