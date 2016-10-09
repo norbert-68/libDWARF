@@ -3,7 +3,10 @@
 	<name>libDWARF</name>
 	<comment></comment>
 	<projects>
+<<<<<<< HEAD
 		<project>libOBJect</project>
+=======
+>>>>>>> branch 'master' of https://github.com/norbert-68/libDWARF.git
 	</projects>
 	<buildSpec>
 		<buildCommand>
