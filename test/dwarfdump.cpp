@@ -18,7 +18,6 @@
 #include <MachO.hpp>
 #include <DWARF.hpp>
 #include <ELF.hpp>
-#include <common/String.hpp>
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -114,8 +113,8 @@ int main(int argc, char * args[])
                     for (const elf::ELFSection & section : debugLine)
                     {
                         std::cout << section.name << ":" << std::endl;
-                        if (programOptions.verbose)
-                            std::cout << common::hexdump(section.binaryContent, section.binaryLength) << std::endl;
+//                        if (programOptions.verbose)
+//                            std::cout << common::hexdump(section.binaryContent, section.binaryLength) << std::endl;
                         lineNumberSection.deserialize(section.binaryContent, section.binaryLength,
                                                       elfFile.header.elfEndianness == elf::ELF_DATA2LSB,
                                                       elfFile.header.elfClass == elf::ELF_CLASS64);
@@ -133,8 +132,8 @@ int main(int argc, char * args[])
                     for (const macho::MachOSection * section : debugLine)
                     {
                         std::cout << section->sectionName << ":" << std::endl;
-                        if (programOptions.verbose)
-                            std::cout << common::hexdump(section->data(), section->	size()) << std::endl;
+//                        if (programOptions.verbose)
+//                            std::cout << common::hexdump(section->data(), section->	size()) << std::endl;
                         lineNumberSection.deserialize(section->data(), section->size(),
                                                       machoFile.header.isLittleEndian(),
                                                       machoFile.header.is64Bit());

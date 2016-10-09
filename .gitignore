@@ -3,3 +3,4 @@
 /Release/*
 /libdwarf.vs/.vs
 /libdwarf.vs/*.VC.*
+/Debug/
