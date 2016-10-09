@@ -17,6 +17,8 @@
 #ifndef DWARF_HPP
 #define DWARF_HPP
 
+#include <ELF.hpp>
+#include <MachO.hpp>
 #include <iomanip>
 #include <map>
 #include <ostream>
@@ -496,6 +498,9 @@ struct LineNumberSection : std::vector<LineNumberUnit>
     }
 
     void deserialize(const uint8_t * src, std::size_t length, bool littleEndian, bool arch64Bit);
+
+    void deserialize(const std::string & filename);
+
 };
 
 } // namespace dwarf
@@ -893,6 +898,33 @@ inline void LineNumberSection::deserialize(const uint8_t * src, std::size_t leng
     for (const LineNumberUnit & compilationUnit : *this)
         for (const LineNumberRow & lineNumberRow : compilationUnit)
             addressIndex[lineNumberRow.address] = &lineNumberRow;
+}
+
+inline void LineNumberSection::deserialize(const std::string & filename)
+{
+    clear();
+    if (elf::ELFFile::isELF(filename))
+    {
+        elf::ELFFile elfFile;
+        elfFile.open(filename);
+        std::deque<elf::ELFSection> sections;
+        elfFile.findSections(dwarf::SN_DEBUG_LINE, sections);
+        for (const elf::ELFSection & section : sections)
+            deserialize(section.binaryContent, section.binaryLength,
+                        elfFile.header.elfEndianness == elf::ELF_DATA2LSB,
+                        elfFile.header.elfClass == elf::ELF_CLASS64);
+    }
+    else if (macho::MachOFile::isMachO(filename))
+    {
+        macho::MachOFile machoFile;
+        machoFile.open(filename);
+        std::deque<const macho::MachOSection*> sections;
+        machoFile.findSections(dwarf::SN_DEBUG_LINE_MACHO, sections);
+        for (const macho::MachOSection * section : sections)
+            deserialize(section->data(), section->size(),
+                        machoFile.header.isLittleEndian(),
+                        machoFile.header.is64Bit());
+    }
 }
 
 } // namespace dwarf
